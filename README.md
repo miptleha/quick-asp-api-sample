@@ -10,4 +10,4 @@ Test project contains both server and client parts. Download, open in [Visual St
 
 ## Client
 * Bootstrap layout
-* Pure JS uses Fetch API
+* Pure JS (Fetch API)
