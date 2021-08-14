@@ -1,4 +1,4 @@
-Idea and sample taken from metanit tutorial for [web api](https://metanit.com/sharp/aspnet5/23.2.php). Tried not to copy the code blindly.
+Idea and sample taken from metanit [tutorial](https://metanit.com/sharp/aspnet5/23.2.php) for Web API. Tried not to copy the code blindly.
 
 Test project contains both server and client parts. Download, open in [Visual Studio](https://visualstudio.microsoft.com/vs/) and run.
 
