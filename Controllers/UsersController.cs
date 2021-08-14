@@ -16,19 +16,25 @@ namespace quick_asp_api_sample.Controllers
     {
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private List<User> _users = new List<User>();
-        public UsersController()
+        private ApplicationContext _db;
+
+        public UsersController(ApplicationContext db)
         {
-            log.Debug("creating UserController");
-            _users.Add(new User { Name = "Alex", Age = 40 });
-            _users.Add(new User { Name = "Misha", Age = 10 });
+            log.Debug("ctor");
+            _db = db;
+            if (!_db.Users.Any())
+            {
+                _db.Users.Add(new User { Name = "Alex", Age = 40 });
+                _db.Users.Add(new User { Name = "Misha", Age = 10 });
+                _db.SaveChanges();
+            }
         }
         // GET: api/<UsersController>
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            log.Debug("UserController.Get");
-            return _users;
+            log.Debug("Get");
+            return _db.Users;
         }
 
         // GET api/<UsersController>/5
