@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using log4net;
+using Microsoft.AspNetCore.Mvc;
 using quick_asp_api_sample.Models;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,12 @@ namespace quick_asp_api_sample.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private List<User> _users = new List<User>();
         public UsersController()
         {
+            log.Debug("creating UserController");
             _users.Add(new User { Name = "Alex", Age = 40 });
             _users.Add(new User { Name = "Misha", Age = 10 });
         }
@@ -23,6 +27,7 @@ namespace quick_asp_api_sample.Controllers
         [HttpGet]
         public IEnumerable<User> Get()
         {
+            log.Debug("UserController.Get");
             return _users;
         }
 
