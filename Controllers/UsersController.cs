@@ -24,8 +24,8 @@ namespace quick_asp_api_sample.Controllers
             _db = db;
             if (!_db.Users.Any())
             {
-                _db.Users.Add(new User { Name = "Alex", Age = 40 });
-                _db.Users.Add(new User { Name = "Misha", Age = 10 });
+                _db.Users.Add(new User { Id = 1, Name = "Alex", Age = 40 });
+                _db.Users.Add(new User { Id = 2, Name = "Misha", Age = 10 });
                 _db.SaveChanges();
             }
         }
@@ -34,32 +34,51 @@ namespace quick_asp_api_sample.Controllers
         public IEnumerable<User> Get()
         {
             log.Debug("Get");
-            return _db.Users;
+            return _db.Users.ToList();
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            log.Debug($"Get: {id}");
+            return _db.Users.Where(u => u.Id == id).FirstOrDefault();
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User u)
         {
+            log.Debug($"Post: {u.Name}, {u.Age}");
+            _db.Users.Add(u);
+            _db.SaveChanges();
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] User u)
         {
+            log.Debug($"Put: {id}");
+            var u1 = _db.Users.Where(u => u.Id == id).FirstOrDefault();
+            if (u1 != null)
+            {
+                u1.Name = u.Name;
+                u1.Age = u.Age;
+                _db.SaveChanges();
+            }
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            log.Debug($"Delete: {id}");
+            var u = _db.Users.Where(u => u.Id == id).FirstOrDefault();
+            if (u != null)
+            {
+                _db.Users.Remove(u);
+                _db.SaveChanges();
+            }
         }
     }
 }

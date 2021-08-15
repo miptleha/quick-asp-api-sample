@@ -3,10 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <title>quick-asp-api-sample</title>
-    <script src="site.js"></script>
+    <link rel="shortcut icon" href="#" />
 </head>
 <body>
-    Test page uses <a href="api/Users">Users API</a> service.
-    <div id="users"></div>
+    <div class="container">
+        <p>Test page uses <a href="api/Users">Users API</a> service.</p>
+
+        <h2>Action panel</h2>
+        <div>
+            <div class="row">
+                <div class="col-md-4">Name</div>
+                <div class="col-md-4"><input type="text" name="name" id="name" value="" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">Age</div>
+                <div class="col-md-4"><input type="text" name="age" id="age" value="" /></div>
+            </div>
+            <button class="btn" id="save">Add User</button>
+            <button class="btn" id="cancel">Cancel</button>
+        </div>
+
+        <h2>List of Users</h2>
+        <div id="users">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="site.js"></script>
 </body>
 </html>
