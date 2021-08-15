@@ -5,11 +5,11 @@ Test project contains both server and client. Download sources, open in [Visual 
 ## Server
 * Visual Studio 2019 project from ASP.NET Core Web API template
 * Simple get/post/put/delete handler
-* Objects stored in localdb, used EF
+* Objects stored in LocalDB, used EF
 * Model validation
 * Logging (service.log file)
 
-Warning: localdb is not working under IIS, connect to shared instance or use sql express, [more info](https://stackoverflow.com/a/66388986/2764727).
+Warning: LocalDB is not working under IIS, connect to shared instance or use SQL Server Express, [more info](https://stackoverflow.com/a/66388986/2764727).
 
 ## Client
 * Bootstrap layout
