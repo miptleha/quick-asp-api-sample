@@ -9,7 +9,7 @@ Test project contains both server and client. Download sources, open in [Visual 
 * Model validation
 * Logging (service.log file)
 
-Warning: localdb is not working under IIS, use [shared instance](https://stackoverflow.com/a/66388986/2764727).
+Warning: localdb is not working under IIS, connect to shared instance or use sql express, [more info](https://stackoverflow.com/a/66388986/2764727).
 
 ## Client
 * Bootstrap layout
