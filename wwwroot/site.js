@@ -97,8 +97,11 @@ function row(user) {
     tr.appendChild(td);
 
     td = document.createElement("td");
+    var trunc = document.createElement("div");
+    trunc.classList.add("trunc");
     text = document.createTextNode(user.name);
-    td.appendChild(text);
+    td.appendChild(trunc);
+    trunc.appendChild(text);
     tr.appendChild(td);
 
     td = document.createElement("td");
