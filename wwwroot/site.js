@@ -20,8 +20,12 @@ async function SaveUser() {
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: body
     });
-    if (response.ok === true) {
+    if (response.ok) {
         GetUsers();
+    }
+    else {
+        var err = await response.json();
+        error("SaveUser", err);
     }
 }
 
@@ -31,10 +35,14 @@ async function GetUser(id) {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
-    if (response.ok === true) {
+    if (response.ok) {
         const user = await response.json();
         document.querySelector("#name").value = user.name;
         document.querySelector("#age").value = user.age;
+    }
+    else {
+        var err = await response.json();
+        error("GetUser", err);
     }
 }
 
@@ -44,6 +52,7 @@ function CancelUser() {
     method = "POST";
     document.querySelector("#save").innerHTML = "Add User";
     _id = null;
+    document.querySelector("#errors").classList.add('d-none');
 }
 
 function EditUser(id) {
@@ -64,13 +73,17 @@ async function GetUsers() {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
-    if (response.ok === true) {
+    if (response.ok) {
         const users = await response.json();
         var table = document.querySelector('#users tbody');
         table.innerHTML = "";
         users.forEach(user => {
             table.appendChild(row(user));
         });
+    }
+    else {
+        var err = await response.json();
+        error("GetUsers", err);
     }
 }
 
@@ -115,4 +128,22 @@ function row(user) {
     tr.appendChild(td);
 
     return tr;
+}
+
+function error(title, err) {
+    console.log(title, err);
+
+    var msg = "";
+    if (err.error) {
+        msg = err.error;
+    }
+    if (err.errors) {
+        for (var n in err.errors) {
+            if (msg.length > 0)
+                msg += "<br/>";
+            msg += err.errors[n];
+        }
+    }
+    document.querySelector('#errors').innerHTML = msg;
+    document.querySelector("#errors").classList.remove('d-none');
 }

@@ -8,28 +8,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>ASP.NET Core Web API Test Page</h1>
+        <h2>ASP.NET Core Web API Test Page</h2>
         <p>Test page uses <a href="api/Users">Users API</a> service.</p>
 
         <div class="mb-3">
-            <h2>Action panel</h2>
+            <h3>Action panel</h3>
+            <div id="errors" class="alert alert-danger d-none"></div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="name">Name</label>
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="name">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="name" id="name" value="" class="form-control" />
+                    <input type="text" name="name" id="name" value="" class="form-control form-control-sm" />
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="age">Age</label>
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="age">Age</label>
                 <div class="col-sm-10">
-                    <input type="text" name="age" id="age" value="" class="form-control" />
+                    <input type="text" name="age" id="age" value="" class="form-control form-control-sm" />
                 </div>
             </div>
             <button class="btn btn-primary" id="save">Add User</button>
             <button class="btn btn-secondary" id="cancel">Cancel</button>
         </div>
 
-        <h2>List of Users</h2>
+        <h3>List of Users</h3>
         <div id="users">
             <table class="table table-bordered">
                 <thead>
@@ -46,6 +47,11 @@
         </div>
     </div>
 
-    <script src="site.js"></script>
+    <script>
+        //prevent caching js
+        var script = document.createElement("script");
+        script.src = "site.js?v=" + (new Date()).getTime();
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
